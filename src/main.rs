@@ -12,14 +12,17 @@ fn func_ex_div_some(x: i32, y: i32) -> Option<i32> {
     ans
 }
 
-// この関数の戻り値はResult<成功した場合に返される値の型(T), エラーが発生した場合に返される値の型(E)>となっている
-fn func_ex_div_result(x: i32, y: i32) -> Result<i32, &'static str> {
-    if y == 0 {
-        // Result型の場合、エラーの場合はErr()で包む
-        Err("div by zero")
-    } else {
-        // Result型の場合、成功した場合はOK()で包む
-        Ok(x / y)
+// モジュールの定義
+mod module_div_result {
+    // この関数の戻り値はResult<成功した場合に返される値の型(T), エラーが発生した場合に返される値の型(E)>となっている
+    pub fn func_ex_div_result(x: i32, y: i32) -> Result<i32, &'static str> {
+        if y == 0 {
+            // Result型の場合、エラーの場合はErr()で包む
+            Err("div by zero")
+        } else {
+            // Result型の場合、成功した場合はOK()で包む
+            Ok(x / y)
+        }
     }
 }
 
@@ -57,8 +60,8 @@ fn main() {
     func_ex_print_some(func_ex_div_some(10, 0));
     func_ex_print_some_match(func_ex_div_some(10, 5));
     func_ex_print_some_match(func_ex_div_some(10, 0));
-    func_ex_print_result(func_ex_div_result(10, 5));
-    func_ex_print_result(func_ex_div_result(10, 0));
+    func_ex_print_result(module_div_result::func_ex_div_result(10, 5));
+    func_ex_print_result(module_div_result::func_ex_div_result(10, 0));
 }
 
 #[test]
