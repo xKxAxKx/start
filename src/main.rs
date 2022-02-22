@@ -6,9 +6,11 @@ mod my_module;
 fn func_ex_div_some(x: i32, y: i32) -> Option<i32> {
     // 変数ansにifの式(None or Some(x / y))を代入
     // ifは必ず式になる？
-    let ans = if y == 0 { None } else { Some(x / y) };
-    // 変数ansを返す
-    ans
+    if y == 0 {
+        None
+    } else {
+        Some(x / y)
+    }
 }
 
 // モジュールの定義
