@@ -1,3 +1,6 @@
+#[path = "module_print_result.rs"]
+mod my_module;
+
 // Option型なので戻り値は値を返さない場合がある。
 // Option<i32>としているので値が入る場合にはi32型となる。
 fn func_ex_div_some(x: i32, y: i32) -> Option<i32> {
@@ -48,20 +51,13 @@ fn func_ex_print_some_match<T: std::fmt::Display>(ans: Option<T>) {
     }
 }
 
-fn func_ex_print_result<T: std::fmt::Display, E: std::fmt::Display>(ans: Result<T, E>) {
-    match ans {
-        Ok(res) => println!("{}", res),
-        Err(str) => println!("{}", str),
-    }
-}
-
 fn main() {
     func_ex_print_some(func_ex_div_some(10, 5));
     func_ex_print_some(func_ex_div_some(10, 0));
     func_ex_print_some_match(func_ex_div_some(10, 5));
     func_ex_print_some_match(func_ex_div_some(10, 0));
-    func_ex_print_result(module_div_result::func_ex_div_result(10, 5));
-    func_ex_print_result(module_div_result::func_ex_div_result(10, 0));
+    my_module::func_ex_print_result(module_div_result::func_ex_div_result(10, 5));
+    my_module::func_ex_print_result(module_div_result::func_ex_div_result(10, 0));
 }
 
 #[test]
