@@ -60,3 +60,13 @@ fn main() {
     func_ex_print_result(func_ex_div_result(10, 5));
     func_ex_print_result(func_ex_div_result(10, 0));
 }
+
+#[test]
+fn test_1() {
+    assert_eq!(func_ex_div_some(10, 5), Some(2)); // 成功
+}
+
+#[test]
+fn test_2() {
+    assert_eq!(func_ex_div_some(10, 5), Some(3)); // 失敗
+}
